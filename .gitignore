@@ -1,3 +1,5 @@
 .DS_Store
 src/node_modules
 package.zip
+src/log.txt
+src/log.json
