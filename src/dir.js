@@ -35,6 +35,9 @@ function readFileData(obj){
                         //     depth: null
                         // }));
                         // console.log('metadata', metadata.common.title, metadata.common.artist, metadata.common.album)
+                        if(metadata.common){
+                            child.info = metadata.common;
+                        }
                         if (metadata.common && metadata.common.picture && metadata.common.picture[0]) {
                             imageToAscii(metadata.common.picture[0].data, (err, converted) => {
                                 // console.log(err || converted);

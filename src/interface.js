@@ -2,6 +2,7 @@ var blessed = require('blessed');
 var contrib = require('blessed-contrib');
 var fs = require('fs')
 var dir = require('./dir')
+var player = require('./player')
 
 // console.log('dir', dir)
 
@@ -82,6 +83,21 @@ tree.on('select', function(node){
     // capture selects
     if(node.image){
         album.setContent(node.image);
+    }
+    if(node.extension && node.extension == '.mp3'){
+        if(player.playing){
+            console.log('playing')
+            // player.stop();
+            player.add(node.path);
+            player.next();
+            // player.play();
+        } else {
+            player.add(node.path);
+            player.play();
+        }
+        // player.add(node.path);
+        // player.play();
+        // player.play(node.path)
     }
 })
 
