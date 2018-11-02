@@ -45,8 +45,8 @@ var screen = blessed.screen({
 var box = blessed.box({
     top: 0,
     left: 0,
-    width: '50%',
-    height: '50%',
+    width: '100%',
+    height: '100%',
     content: 'Hello {bold}world{/bold}!',
     tags: true,
     border: {
@@ -70,9 +70,9 @@ var box = blessed.box({
 var tree = contrib.tree({
     fg: 'green',
     left: 0,
-    top: '50%',
-    width: '50%',
-    height: '50%',
+    top: 0,
+    width: '100%',
+    height: '100%',
 })
 screen.append(tree);
 
