@@ -12,6 +12,8 @@
   "dependencies": {
     "blessed": "^0.1.81",
     "blessed-contrib": "^4.8.8",
-    "term.js": "0.0.7"
+    "directory-tree": "^2.1.0",
+    "term.js": "0.0.7",
+    "underscore": "^1.9.1"
   }
 }

@@ -1,5 +1,19 @@
 var blessed = require('blessed');
 var contrib = require('blessed-contrib');
+var fs = require('fs')
+var dir = require('./dir')
+
+console.log('dir', dir)
+
+dir.dir_emitter.on('dir', function(data){
+    // console.log('data', data)
+    data.extended = true;
+    tree.setData(data);
+    fs.writeFile('log.txt', 'event', 'utf-8', function () {
+
+    })
+    screen.render();
+})
 
 // Create a screen object.
 var screen = blessed.screen({
