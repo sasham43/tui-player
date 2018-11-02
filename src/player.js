@@ -3,7 +3,7 @@ var contrib = require('blessed-contrib');
 var fs = require('fs')
 var dir = require('./dir')
 
-console.log('dir', dir)
+// console.log('dir', dir)
 
 dir.dir_emitter.on('dir', function(data){
     // console.log('data', data)
@@ -19,6 +19,7 @@ dir.dir_emitter.on('dir', function(data){
 var screen = blessed.screen({
     smartCSR: true
 });
+var elements = [];
 
 // var terminal = blessed.terminal({
 //     parent: screen,
@@ -43,41 +44,45 @@ var screen = blessed.screen({
 // });
 // Create a box perfectly centered horizontally and vertically.
 var box = blessed.box({
+    title: 'box',
     top: 0,
     left: 0,
     width: '100%',
     height: '100%',
-    content: 'Hello {bold}world{/bold}!',
+    content: '',
     tags: true,
     border: {
         type: 'line'
     },
     style: {
         fg: 'white',
-        bg: 'magenta',
+        bg: 'black',
         border: {
             fg: '#f0f0f0'
-        },
-        hover: {
-            bg: 'green'
         }
     }
 });
+elements.push(box);
 
 // Append our box to the screen.
 // screen.append(box);
 
 var tree = contrib.tree({
+    title: 'tree',
     fg: 'green',
     left: 0,
     top: 0,
     width: '100%',
     height: '100%',
 })
+elements.push(tree);
 screen.append(tree);
 
 tree.on('select', function(node){
     // capture selects
+    if(node.image){
+        box.setContent(node.image);
+    }
 })
 
 tree.setData({
@@ -97,6 +102,26 @@ tree.setData({
 screen.key(['escape', 'q'], function (ch, key) {
     return process.exit(0);
 });
+
+screen.key('C-a', function(){
+    elements.forEach(function (e) {
+        if (e.title != 'box') {
+            screen.remove(e);
+        }
+    })
+    screen.append(box);
+    screen.render();
+})
+screen.key('C-p', function(){
+    console.log('yo')
+    elements.forEach(function(e){
+        if(e.title != 'tree'){
+            screen.remove(e);   
+        }
+    })
+    screen.append(tree);
+    screen.render();
+})
 
 // terminal.focus();
 tree.focus();
