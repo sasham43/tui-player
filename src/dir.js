@@ -7,7 +7,8 @@ const imageToAscii = require('image-to-ascii')
 
 var dir_emitter = new EventEmitter();
 
-var file_path = `/Users/sashakramer/mp3`
+// var file_path = `/Users/sashakramer/mp3`;
+var file_path = `/home/pi/`
 
 
 
